@@ -1,0 +1,39 @@
+<div class="col-sm-12">
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-4 frame-signin">
+      <form #m="ngForm" autocomplete="off" (ngSubmit)="login(m.value)">
+        <div class="form-group">
+          <div class="col-sm-12" style="padding-top: 5px">
+            <input
+              class="form-control"
+              type="text"
+              name="userId"
+              [(ngModel)]="userId"
+              id="userId"
+              placeholder="User id"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12" style="padding-top: 3px">
+            <input
+              class="form-control"
+              type="text"
+              name="passwd"
+              [(ngModel)]="passwd"
+              id="passwd"
+              placeholder="Password"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-12" style="padding-top: 3px">
+            <button class="btn btn-md btn-block btn-primary" type="submit">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

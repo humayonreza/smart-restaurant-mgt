@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="txt-header" style="color: #888">Reserve a Table</div>
+  <div>
+    Welcome to reservation process. You can check the availabilities and book
+    accordingly. Choose a date and meal session and provide your contact
+    details.
+  </div>
+  <div class="txt-center" style="margin-top: 10px">
+    <form
+      #b="ngForm"
+      (ngSubmit)="fetch_optimeslot_by_date_mealId(b.value)"
+      autocomplete="off"
+    >
+      <table class="table table-condensed" width="100%">
+        <thead>
+          <tr style="color: #999">
+            <th>Reservation Date</th>
+            <th>Meal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 4px 0; margin: 0; border: none; width: 55%">
+              <input
+                id="reservationDate"
+                type="date"
+                class="form-control"
+                name="reservationDate"
+                [(ngModel)]="reservationDate"
+                placeholder="Pick a Date"
+              />
+            </td>
+            <td style="padding: 4px 0; margin: 0; border: none; width: 42%">
+              <select
+                class="form-control"
+                name="mealId"
+                [(ngModel)]="mealId"
+                id="mealId"
+              >
+                <option value="1">Breakfast</option>
+                <option value="2">Lunch</option>
+                <option value="3">Dinner</option>
+              </select>
+            </td>
+            <td
+              class="txt-right"
+              style="margin: 0; padding: 0 4px 0 4px; border: none"
+              valign="top"
+            >
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="
+                  width: 40px;
+                  height: 40px;
+                  margin-top: 1px;
+                  border-radius: 50%;
+                  padding: 2px 1px 0 0;
+                  outline: none;
+                  border: none;
+                "
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div class="txt-center">
+    <button
+      *ngFor="let data of arrTimeSlotByMealId"
+      mat-raised-button
+      color="basic"
+      matBadge="8"
+      matBadgePosition="before"
+      matBadgeColor="primary"
+      style="margin: 3px"
+    >
+      {{ data.timeSlotVal }}
+    </button>
+    <div *ngIf="isSlotAval">
+      Blue circle displays availabilities as per Time-slot
+    </div>
+  </div>
+</div>

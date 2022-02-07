@@ -1,0 +1,17 @@
+agm-map {
+  height: 400px;
+}
+
+.active {
+  color: black;
+  background-color: #eee;
+  letter-spacing: 1.5px;
+}
+.not-active {
+  color: #aaa;
+  background-color: #fff;
+}
+.normal {
+  color: #777;
+  background-color: #fff;
+}

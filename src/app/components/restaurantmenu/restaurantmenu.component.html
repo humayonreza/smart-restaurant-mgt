@@ -1,0 +1,86 @@
+<div class="col-sm-12">
+  <div class="txt-center" style="margin-top: 10px">
+    <table width="100%">
+      <tr>
+        <td
+          *ngFor="let data of arrFoodChoice"
+          (click)="select_choice(data.optVal)"
+          style="cursor: pointer"
+        >
+          <mat-icon
+            [ngClass]="data.isSelected == 1 ? 'active' : 'not-active'"
+            >{{ data.icon }}</mat-icon
+          >
+          <div style="padding: 1px 5px 1px 5px; font-size: 12px">
+            {{ data.optTxt }}
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row" *ngIf="arrMenuSelected.length > 0">
+    <table
+      width="100%"
+      class="table table-hover table-condensed table-bordered"
+    >
+      <thead>
+        <tr>
+          <th>Food Name</th>
+          <th class="txt-center">Price</th>
+          <th class="txt-center">No</th>
+          <th class="txt-center">Add/Rmv</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let data of arrMenuSelected"
+          [ngClass]="data.isSelected ? 'isSelected' : 'isNotSelected'"
+          style="font-size: 15px"
+        >
+          <td style="padding: 0; margin: 0; width: 50%">
+            <div style="padding: 0; margin: 0">
+              {{ data.itemName }}
+            </div>
+            <div
+              *ngIf="data.offer > 0"
+              style="
+                font-size: 11px;
+                letter-spacing: 1px;
+                color: tomato;
+                padding: 0;
+                margin: 0;
+              "
+            >
+              {{ "OFFER :" + data.offer + "%" + ", WAS " + data.price }}
+            </div>
+          </td>
+          <td class="txt-center" style="padding: 0; margin: 0; width: 15%">
+            {{
+              data.offer > 0
+                ? (data.price - (10 * 2) / 100).toFixed(2)
+                : data.price
+            }}
+          </td>
+          <td
+            class="txt-center"
+            valign="top"
+            style="padding: 0; margin: 0; width: 15%"
+          >
+            {{ data.orderNo }}
+          </td>
+          <td class="txt-center" style="padding: 0; margin: 0; width: 15%">
+            <mat-icon
+              style="margin-right: 4px; cursor: pointer"
+              (click)="editOrder(data.itemId, 1)"
+              >add_circle</mat-icon
+            ><mat-icon
+              style="cursor: pointer"
+              (click)="editOrder(data.itemId, 2)"
+              >remove_circle</mat-icon
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

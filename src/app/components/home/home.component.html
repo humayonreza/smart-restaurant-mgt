@@ -1,0 +1,118 @@
+<div class="col-sm-12">
+  <app-navbar></app-navbar>
+</div>
+<div class="well text-center col-sm-offset-3 col-sm-6">
+  <div class="input-group" style="margin-top: 40px">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by city"
+      required
+    />
+    <div class="input-group-btn">
+      <button type="button" class="btn btn-danger">Search</button>
+    </div>
+  </div>
+</div>
+
+<div
+  class="col-sm-offset-3 col-sm-6"
+  style="
+    margin-top: -13px;
+    border: thin solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+  "
+>
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel
+        *ngFor="let data of arrRestaurantData"
+        [ngClass]="
+          data.isSelected == 1
+            ? 'active'
+            : data.isSelected == 2
+            ? 'not-active'
+            : 'normal'
+        "
+      >
+        <mat-expansion-panel-header
+          style="padding-left: 3px"
+          (click)="onSelectRestaurant(data.resId)"
+        >
+          <mat-panel-title
+            [ngClass]="
+              data.isSelected == 1
+                ? 'active'
+                : data.isSelected == 2
+                ? 'not-active'
+                : 'normal'
+            "
+          >
+            <table width="100%">
+              <tr style="font-weight: bolder">
+                <td class="txt-left">
+                  <table>
+                    <tr>
+                      <td class="txt-left">
+                        <img
+                          src="{{ data.logo }}"
+                          alt="no logo"
+                          class="logo"
+                        />{{ data.restaurantName }}
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td class="txt-right" style="font-size: 12px">
+                  <mat-icon style="color: tomato">star</mat-icon
+                  >{{ data.rating }}
+                </td>
+              </tr>
+            </table>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="row">
+          <app-restaurantinfo [restaurantId]="data.resId"></app-restaurantinfo>
+        </div>
+        <div
+          class="row txt-center"
+          style="
+            color: #555;
+            margin-top: 20px;
+            border-top: thin solid #ccc;
+            padding-top: 10px;
+          "
+        >
+          <table width="100%">
+            <tr style="font-weight: bolder">
+              <td class="txt-left" style="width: 33.33%">
+                Address<br />{{ data.address }}
+              </td>
+              <td class="txt-center" style="width: 33.33%">
+                Closes at <br />
+                {{ data.closingTime }}
+              </td>
+              <td class="txt-right" style="width: 33.33%">
+                <button
+                  mat-mini-fab
+                  color="primary"
+                  aria-label="Example icon button with a filter list icon"
+                >
+                  <mat-icon>
+                    <a
+                      style="text-decoration: none; color: #fff"
+                      href="https://maps.google.com/?q=23.705163846, 90.403665052"
+                      >directions</a
+                    >
+                  </mat-icon>
+                </button>
+                <!-- https://maps.google.com/?q=23.705163846, 90.403665052 -->
+              </td>
+            </tr>
+          </table>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
